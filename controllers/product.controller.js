@@ -3,9 +3,10 @@ const Product = require("../models/product.schema");
 exports.addProduct = async function addProduct(req, res) {
   try {
     const product = new Product(req.body);
-    await product.save();
+    const productDetail = await product.save();
     res.status(200).send({
       message: "Product added successfully!",
+      data: productDetail
     });
   } catch (error) {
     res.status(400).send({
